@@ -1,0 +1,43 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb"],
+    // "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": [],
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "webpack.config.js"
+        }
+      }
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "allowImportExportEverywhere": false,
+      "codeFrame": false
+    },
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "globals": {},
+    "parser": "babel-eslint",
+    "rules": {
+      "no-console": 1,
+      // "no-param-reassign": [2, { "props": false }],
+      // "no-unused-vars": ["error", {"args": "none"}],
+      // "react/prop-types": 0,
+      // // "react/no-array-index-key": 0,
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      // "react/prefer-stateless-function": 0,
+      "react/prefer-stateless-function": [0, { "ignorePureComponents": 1 }],
+      "import/extensions": 0,
+      "import/no-unresolved": 0,
+      "react/require-default-props": 0,
+      "padded-blocks": 0,
+      "no-empty-pattern": 0,
+      "max-len": ["error", 160],
+      "linebreak-style": ["error", "windows"],
+      "react/no-unused-prop-types": 0
+    }
+}
