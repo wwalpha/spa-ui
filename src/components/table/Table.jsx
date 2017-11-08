@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import css from './css/table.css';
+import css from 'styles/common/table/table.css';
 
 class Table extends Component {
 
@@ -18,7 +18,7 @@ class Table extends Component {
   }
 
   render() {
-    const { fixHeader, children } = this.props;
+    const { fixedHeader, children } = this.props;
 
     let tHeader;
     let tBody;
@@ -48,48 +48,53 @@ class Table extends Component {
       }
     });
 
-    const table = [];
+    const table = (
+      <table key={0} className={css.table}>
+        {tHeader}
+        {tBody}
+      </table>
+    );
+    const items = [];
 
-    if (fixHeader) {
+    if (fixedHeader) {
       // header
-      table.push((
-        <table key={0}>
-          {tHeader}
-        </table>
+      items.push(React.cloneElement(table, { children: tHeader }));
+      const colGroup = React.Children.map(tHeader.props.children, headerRow => (
+        <colgroup>
+          {
+            React.Children.map(headerRow.props.children, headerColumn => (
+              <col style={{ width: headerColumn.props.width }} />
+            ))
+          }
+        </colgroup>
       ));
-      // rows
-      table.push((
+
+      console.log(colGroup);
+      items.push(
         <div key={1} className={css.fixHeader}>
-          <table>
-            {tBody}
-          </table>
-        </div>
-      ));
+          {React.cloneElement(table, { children: [colGroup, tBody] })}
+        </div>,
+      );
     } else {
-      table.push((
-        <table>
-          {tHeader}
-          {tBody}
-        </table>
-      ));
+      items.push(table);
     }
 
     return (
       <div>
-        {table}
+        {items}
       </div>
     );
   }
 }
 
 Table.defaultProps = {
-  fixHeader: false,
+  fixedHeader: false,
 };
 
 Table.propTypes = {
   // width: PropTypes.string,
   // height: PropTypes.string,
-  fixHeader: PropTypes.bool,
+  fixedHeader: PropTypes.bool,
   children: PropTypes.node,
 };
 
