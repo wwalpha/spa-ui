@@ -3,22 +3,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from 'styles/common/table/table.css';
 
+const styles = {
+  fixedHeaderTop: {
+    overflow: 'auto',
+  },
+  fixedHeaderBottom: {
+    overflowX: 'hidden',
+    overflowY: 'auto',
+  },
+};
+
 class Table extends Component {
 
-  constructor() {
-    super();
-    this.state = { sortIndex: -1 };
-
-    this.handleOnSort = this.handleOnSort.bind(this);
-  }
-
-  /** sort column click */
-  handleOnSort(columnNo) {
-    this.setState({ sortIndex: columnNo });
-  }
-
   render() {
-    const { fixedHeader, children } = this.props;
+    const {
+      fixedHeader, children, width, height,
+    } = this.props;
 
     let tHeader;
     let tBody;
@@ -30,9 +30,7 @@ class Table extends Component {
             const rowChildren = React.Children.map(row.props.children, (item) => {
               // Sortableの列をチェックする
               if (item.props.sortable) {
-                return React.cloneElement(item, {
-                  onClick: this.handleOnSort,
-                });
+                return React.cloneElement(item, { onClick: this.props.onSort });
               }
 
               return item;
@@ -48,35 +46,19 @@ class Table extends Component {
       }
     });
 
-    const table = (
-      <table key={0} className={css.table}>
-        {tHeader}
-        {tBody}
-      </table>
-    );
     const items = [];
 
     if (fixedHeader) {
-      // header
-      items.push(React.cloneElement(table, { children: tHeader }));
-      const colGroup = React.Children.map(tHeader.props.children, headerRow => (
-        <colgroup>
-          {
-            React.Children.map(headerRow.props.children, headerColumn => (
-              <col style={{ width: headerColumn.props.width }} />
-            ))
-          }
-        </colgroup>
+      items.push(React.createElement('div', { key: 'header', className: css.fixedHeaderTop },
+        React.createElement('table', { className: css.table, style: { width } }, tHeader),
       ));
-
-      console.log(colGroup);
-      items.push(
-        <div key={1} className={css.fixHeader}>
-          {React.cloneElement(table, { children: [colGroup, tBody] })}
-        </div>,
-      );
+      items.push(React.createElement('div', { key: 'body', className: css.fixedHeaderBottom, style: { height } },
+        React.createElement('table', { className: css.table, style: { width: 'auto' } }, tBody),
+      ));
     } else {
-      items.push(table);
+      items.push(React.createElement('div', { style: { ...styles.fixedHeaderBottom, height } },
+        React.createElement('table', { className: css.table, style: { width: 'auto' } }, [tHeader, tBody]),
+      ));
     }
 
     return (
@@ -89,13 +71,18 @@ class Table extends Component {
 
 Table.defaultProps = {
   fixedHeader: false,
+  width: 'auto',
+  height: '100%',
+  multiSelect: false,
 };
 
 Table.propTypes = {
-  // width: PropTypes.string,
-  // height: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
   fixedHeader: PropTypes.bool,
   children: PropTypes.node,
+  onSort: PropTypes.func,
+  multiSelect: PropTypes.bool,
 };
 
 export default Table;

@@ -27,7 +27,8 @@
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "root": "^3.1.0"
+    "root": "^3.1.0",
+    "styles": "^0.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

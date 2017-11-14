@@ -1,0 +1,8 @@
+.rowColumn {
+  border: solid 1px #c4c4c4;
+  font-weight: normal; 
+  height: 24px;
+  line-height: 24px;
+  width: 50px;
+  /* padding: 0px 4px; */
+}

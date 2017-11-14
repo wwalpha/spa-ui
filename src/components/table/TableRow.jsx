@@ -6,17 +6,18 @@ import css from 'styles/common/table/tableRow.css';
 class TableRow extends Component {
 
   render() {
-    const children = React.Children.map(this.props.children,
-      (item, index) => React.cloneElement(item, {
+    const children = React.Children.map(this.props.children, (item, index) =>
+      React.cloneElement(item, {
         columnNo: index,
-      }),
-    );
+      }));
 
-    return (
-      <tr className={css.row} style={this.props.style}>
-        {children}
-      </tr>
-    );
+    const tr = React.createElement('tr', {
+      className: css.row,
+      style: this.props.style,
+      onClick: (e) => { this.props.onRowClick(e, this.props.rowNumber); },
+    }, children);
+
+    return tr;
   }
 }
 
@@ -26,8 +27,10 @@ TableRow.defaultProps = {
 
 TableRow.propTypes = {
   children: PropTypes.node,
-  // label: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
+  selected: PropTypes.bool,
+  rowNumber: PropTypes.number,
+  onRowClick: PropTypes.func,
 };
 
 export default TableRow;

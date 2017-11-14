@@ -1,0 +1,13 @@
+.headerColumn {
+  border: solid 1px rgb(196, 196, 196);
+  color: #ffffff;
+  background-color: #6b8dab;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  /* min-width: 60px; */
+  width: auto;
+  /* white-space: nowrap; */
+  height: 36px;
+  /* padding: 0px 8px; */
+}

@@ -6,10 +6,10 @@ import css from 'styles/common/table/tableRowColumn.css';
 class TableRowColumn extends Component {
 
   render() {
-    const style = {
-      ...this.props.style,
-      width: this.props.width,
-    };
+    const { width } = this.props;
+    let { style } = this.props;
+
+    if (width) style = { ...this.props.style, width };
 
     return (
       <td
@@ -32,6 +32,8 @@ TableRowColumn.propTypes = {
   columnNo: PropTypes.number,
   /* eslint-enable react/no-unused-prop-types */
   width: PropTypes.string,
+  /* eslint-enable react/no-unused-prop-types */
+  onRowColumnClick: PropTypes.func,
 };
 
 export default TableRowColumn;

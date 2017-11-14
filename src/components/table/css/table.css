@@ -1,9 +1,0 @@
-.table {
-  display: table;
-}
-
-.fixHeader {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 300px;
-}

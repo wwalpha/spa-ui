@@ -15,9 +15,9 @@ module.exports = {
   resolve: {
     alias: {
       root: path.resolve(__dirname, 'src/'),
-      styles: path.resolve(__dirname, 'styles/'),
-      calc: path.resolve(__dirname, 'src/components/calc/')
-    }
+      styles: path.resolve(__dirname, 'style/'),
+    },
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [

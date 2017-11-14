@@ -16,7 +16,7 @@ class Example extends Component {
     for (let i = 0; i < 100; i += 1) {
       rows.push((
         <TableRow key={i}>
-          <TableRowColumn>ROW_AAA</TableRowColumn>
+          <TableRowColumn>{i}</TableRowColumn>
           <TableRowColumn>ROW_BBB</TableRowColumn>
           <TableRowColumn>ROW_CCC</TableRowColumn>
           <TableRowColumn>ROW_DDD</TableRowColumn>
@@ -26,14 +26,14 @@ class Example extends Component {
     }
 
     return (
-      <Table fixHeader>
+      <Table fixedHeader height="400px">
         <TableHeader>
           <TableRow>
-            <TableHeaderColumn sortable>AAA</TableHeaderColumn>
-            <TableHeaderColumn>BBB</TableHeaderColumn>
-            <TableHeaderColumn>CCC</TableHeaderColumn>
-            <TableHeaderColumn>DDD</TableHeaderColumn>
-            <TableHeaderColumn>EEE</TableHeaderColumn>
+            <TableHeaderColumn width="50px" sortable>AAA</TableHeaderColumn>
+            <TableHeaderColumn width="50px">BBB</TableHeaderColumn>
+            <TableHeaderColumn width="50px">CCC</TableHeaderColumn>
+            <TableHeaderColumn width="50px">DDD</TableHeaderColumn>
+            <TableHeaderColumn width="50px">EEE</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>

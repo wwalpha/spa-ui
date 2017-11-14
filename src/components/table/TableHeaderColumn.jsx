@@ -1,5 +1,6 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from 'styles/common/table/tableHeaderColumn.css';
 
 const styles = {
@@ -15,7 +16,6 @@ class TableHeaderColumn extends Component {
     let style = {
       ...this.props.style,
       width: this.props.width,
-      colSpan: this.props.colSpan,
     };
 
     // sort有効の場合
@@ -24,6 +24,9 @@ class TableHeaderColumn extends Component {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <th
+        ref={(headerColumn) => { this.headerColumn = headerColumn; }}
+        colSpan={this.props.colSpan}
+        rowSpan={this.props.rowSpan}
         className={css.headerColumn}
         style={style}
         onClick={() => this.props.onClick(this.props.columnNo)}
@@ -36,7 +39,8 @@ class TableHeaderColumn extends Component {
 
 TableHeaderColumn.defaultProps = {
   onClick: () => {},
-  width: '100px',
+  width: 'auto',
+  style: {},
 };
 
 TableHeaderColumn.propTypes = {
@@ -47,6 +51,7 @@ TableHeaderColumn.propTypes = {
   columnNo: PropTypes.number,
   width: PropTypes.string,
   colSpan: PropTypes.string,
+  rowSpan: PropTypes.string,
 };
 
 export default TableHeaderColumn;

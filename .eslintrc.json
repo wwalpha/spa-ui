@@ -38,6 +38,12 @@
       "no-empty-pattern": 0,
       "max-len": ["error", 160],
       "linebreak-style": ["error", "windows"],
-      "react/no-unused-prop-types": 0
+      "react/no-unused-prop-types": 0,
+      "function-paren-newline": 0
+    },
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+      "modules": true
     }
 }

@@ -1,0 +1,38 @@
+.fixedHeaderTop {
+  overflow: auto;
+}
+.fixedHeaderBottom {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.fixedHeaderBottom::-webkit-scrollbar {
+  display: none;
+}
+
+.table {
+  border: none;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /* margin: 0px 4px; */
+  /* width: calc(100% - 8px); */
+}
+
+.content1 {
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
+  overflow: hidden;
+}
+
+.content2 {
+  overflow: auto;
+  padding-right: 15px;
+  width: inherit;
+}
+
+.merge {
+  border: none;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
